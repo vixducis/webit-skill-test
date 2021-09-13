@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AuctionItem;
-use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
@@ -14,7 +13,11 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $item = AuctionItem::find($id);
+        $user = auth()->user();
+        $item = $user !== null && $user->admin
+            ? AuctionItem::with('bids.user')->find($id)
+            : AuctionItem::find($id);
+
         if ($item === null) {
             abort(404);
         }

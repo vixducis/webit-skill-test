@@ -7,16 +7,20 @@
     <form method="POST" action="{{ route('updateUser') }}">
         @csrf
         <input type="hidden" name="_method" value="put" />
-        <x-label for="oldpassword" value="old password" />
-        <x-input id="oldpassword" class="block mt-1"
-            type="password"
-            name="oldpassword"
-            required autocomplete="current-password" />
-        <x-label for="newpassword" value="new password" />
-        <x-input id="newpassword" class="block mt-1"
-            type="password"
-            name="newpassword"
-            required autocomplete="new-password" />
+        <div class="mb-2">
+            <x-label for="oldpassword" value="old password" />
+            <x-input id="oldpassword" class="block mb-1"
+                type="password"
+                name="oldpassword"
+                required autocomplete="current-password" />
+        </div>
+        <div class="mb-2">
+            <x-label for="newpassword" value="new password" />
+            <x-input id="newpassword" class="block mb-1"
+                type="password"
+                name="newpassword"
+                required autocomplete="new-password" />
+        </div>
         <x-button>Change</x-button>
     </form>
 </div>
