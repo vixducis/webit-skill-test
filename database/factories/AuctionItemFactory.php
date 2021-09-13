@@ -33,7 +33,7 @@ class AuctionItemFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'description' => $this->faker->text(200),
+            'description' => $this->faker->paragraphs(5, true),
             'image' => $this->randomItemImage()
         ];
     }

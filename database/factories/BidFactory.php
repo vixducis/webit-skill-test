@@ -26,7 +26,7 @@ class BidFactory extends Factory
         return [
             'user_id' => User::all('id')->random(),
             'auction_item_id' => AuctionItem::all('id')->random(),
-            'amount' => $this->faker->randomFloat(2, 0.01, 5000)
+            'amount' => $this->faker->randomFloat(2, 0.01, 500)
         ];
     }
 }
