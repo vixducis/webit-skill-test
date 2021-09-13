@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AuctionItem;
-use App\View\Components\auctionItemComponent;
-use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {

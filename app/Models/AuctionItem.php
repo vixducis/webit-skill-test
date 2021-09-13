@@ -15,7 +15,7 @@ class AuctionItem extends Model
      */
     public function bids() 
     {
-        return $this->hasMany(Bid::class);
+        return $this->hasMany(Bid::class)->orderby('amount','desc');
     }
 
     /**
