@@ -43,6 +43,20 @@
     align-items: center;
 }
 
+.thanks-container {
+    height: calc(100vh - 60px);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.thanks-container .content {
+    position: absolute;
+    bottom: 20px;
+    left:20px;
+}
+
 @media (max-width: 360px) {
     .item-table {
         grid-template-columns: 1fr min-content min-content;

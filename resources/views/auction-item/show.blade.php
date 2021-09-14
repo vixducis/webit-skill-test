@@ -14,10 +14,19 @@
             <p class="mb-4">
                 @nl2br($item->description)
             </p>
-            @if ($user?->admin ?? false)
+            @if ($user === null)
+                <a href="{{url('login')}}"><x-button>Login to place bid</x-button></a>
+            @elseif ($user->admin == false)
+                <div class="w-full flex justify-center">
+                    <form action="{{url('bid')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="auction_item_id" value="{{$item->id}}" />
+                        <input required placeholder="amount" class="px-4 h-12 border w-32 border-gray-800 rounded-l-sm" type="number" step="0.01" name="amount" /><button class="uppercase h-12 px-4 bg-gray-800 text-white rounded-r-sm hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300" type="submit">place bid</button>
+                    </form>
+                </div>
+            @else 
                 <x-item-bids-table :bids="$item->bids()->get()"></x-item-bids-table>
             @endif
-            <x-place-bid :item="$item" :user="$user"></x-place-bid>
         </div>
     </div>
 </x-app>

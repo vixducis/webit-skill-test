@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BidController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +28,8 @@ Route::get('/item/{id}', [ItemController::class, 'show']);
 Route::get('/item/{id}/edit', [ItemController::class, 'edit']);
 Route::put('/item/{id}', [ItemController::class, 'update']);
 Route::delete('/item/{id}', [ItemController::class, 'destroy']);
+
+Route::post('/bid', [BidController::class, 'store']);
+Route::get('/bid/{id}/thanks', [BidController::class, 'thanks']);
 
 require __DIR__.'/auth.php';
