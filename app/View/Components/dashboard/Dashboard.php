@@ -17,7 +17,7 @@ class Dashboard extends Component
      */
     public function __construct()
     {
-        $this->user = User::with('bids.item')->find(Auth::id());
+        $this->user = User::with('bids.item')->find(Auth::id()) ?? new User();
     }
 
     /**

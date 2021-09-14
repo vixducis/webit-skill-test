@@ -6,7 +6,7 @@
     @endif
     <form method="POST" action="{{ route('updateUser') }}">
         @csrf
-        <input type="hidden" name="_method" value="put" />
+        @method('put')
         <div class="mb-2">
             <x-label for="oldpassword" value="old password" />
             <x-input id="oldpassword" class="block mb-1"

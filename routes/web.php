@@ -21,7 +21,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/item/new', [ItemController::class, 'create']);
+Route::post('/item', [ItemController::class, 'store']);
 Route::get('/item/{id}', [ItemController::class, 'show']);
+Route::get('/item/{id}/edit', [ItemController::class, 'edit']);
+Route::put('/item/{id}', [ItemController::class, 'update']);
 Route::delete('/item/{id}', [ItemController::class, 'destroy']);
 
 require __DIR__.'/auth.php';

@@ -11,13 +11,22 @@ class AuctionItem extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'image'
+    ];
+
+    public const STORAGE_PATH = 'images/items/';
+    public const IMAGE_PATH = 'storage/'.self::STORAGE_PATH;
+
     /**
      * Returns the full image path so it can be used in an asset function
      * @return string
      */
     public function getImagePath(): string
     {
-        return 'storage/images/items/'.$this->image;
+        return self::IMAGE_PATH.$this->image;
     }
 
     /**

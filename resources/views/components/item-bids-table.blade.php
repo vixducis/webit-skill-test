@@ -1,4 +1,4 @@
-<h3 class="font-bold text-gray-900 mb-2 mt-8 uppercase text-xl">Bids</h3>
+<h3 class="font-bold text-gray-900 mb-2 mt-4 uppercase text-xl">Bids</h3>
 @if ($bids->count() > 0)
 <table class="w-full bids-table">
     <thead class="uppercase font-bold">
