@@ -31912,6 +31912,73 @@ video {
   transform: translate(-50%, -50%);
 }
 
+.item-table {
+  display: grid;
+  grid-template-columns: -webkit-min-content 1fr -webkit-min-content -webkit-min-content;
+  grid-template-columns: min-content 1fr min-content min-content;
+  row-gap: 1em;
+  align-items: center;
+}
+
+@media (max-width: 360px) {
+  .item-table {
+    grid-template-columns: 1fr -webkit-min-content -webkit-min-content;
+    grid-template-columns: 1fr min-content min-content;
+  }
+
+  .item-table .item-image {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .bids-table {
+    display: block;
+  }
+
+  .bids-table thead{
+    display: none;
+  }
+
+  .bids-table tbody{
+    display: block;
+  }
+
+  .bids-table tbody tr{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr -webkit-min-content;
+    grid-template-columns: 1fr min-content;
+    grid-template-rows: -webkit-min-content -webkit-min-content;
+    grid-template-rows: min-content min-content;
+    grid-template-areas: 
+            "name price" 
+            "date price";
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+
+  .bids-table tbody tr:last-child{
+    border-bottom: 0;
+  }
+
+  .bids-table tbody tr .name {
+    grid-area: name;
+  }
+
+  .bids-table tbody tr .price {
+    grid-area: price;
+    background-color: rgb(31, 41, 55);
+    color: white;
+    border-radius: 0.125rem;
+    padding: 0 10px;
+  }
+
+  .bids-table tbody tr .date {
+    grid-area: date;
+    color: rgb(180, 180, 180);
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

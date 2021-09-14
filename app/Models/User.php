@@ -13,6 +13,15 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Returns the relationship to the bids.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bids() 
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var string[]

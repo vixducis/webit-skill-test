@@ -19,6 +19,7 @@ class CreateAuctionItemsTable extends Migration
             $table->text('description');
             $table->string('image')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

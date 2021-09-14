@@ -24,4 +24,17 @@ class ItemController extends Controller
 
         return view('itemlisting', ['item' => $item]);
     }
+
+    /**
+     * Renders the information about one specific item listing.
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        if (auth()->user()?->admin ?? false) {
+            AuctionItem::find($id)->delete();
+        }
+        return back();
+    }
 }

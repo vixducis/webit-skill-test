@@ -11,10 +11,19 @@ class Bid extends Model
 
     /**
      * Returns which user made the bid.
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user() 
     {
         return $this->hasOne(User::class,'id','user_id');
+    }
+
+    /**
+     * Returns which item has been bid on.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function item()
+    {
+        return $this->hasOne(AuctionItem::class,'id','auction_item_id');
     }
 }

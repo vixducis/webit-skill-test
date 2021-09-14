@@ -22,5 +22,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/item/{id}', [ItemController::class, 'show']);
+Route::delete('/item/{id}', [ItemController::class, 'destroy']);
 
 require __DIR__.'/auth.php';
