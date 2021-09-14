@@ -5,12 +5,20 @@
             <p class="px-4 py-2 bg-white uppercase title text-4xl bold">{{$item->name}}</p>
         </div>
         <div class="w-full container mx-auto mt-0 px-6 py-6">
-            @if ($item->getHighestBid() !== null)
-                <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
-                    <p class="px-2 text-xs">current top bid</p>
-                    <p class="px-2 text-xl md:text-3xl bg-gray-800 text-white text-center">&euro;&nbsp;{{$item->getHighestBid()->amount}}</p>
-                </div>
-            @endif
+            <div class="float-left w-full md:w-auto md:mb-1 flex justify-center mb-2">
+                @if ($item->getHighestBid() !== null)
+                    <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
+                        <p class="px-2 text-xs">current top bid</p>
+                        <p class="px-2 text-xl md:text-3xl bg-gray-800 text-white text-center">&euro;&nbsp;{{$item->getHighestBid()->amount}}</p>
+                    </div>
+                @endif
+                @if ($user !== null && $item->getHighestBidForUser($user) !== null)
+                    <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
+                        <p class="px-2 text-xs">your top bid</p>
+                        <p class="px-2 text-xl md:text-3xl bg-gray-800 text-white text-center">&euro;&nbsp;{{$item->getHighestBidForUser($user)->amount}}</p>
+                    </div>
+                @endif
+            </div>
             <p class="mb-4">
                 @nl2br($item->description)
             </p>

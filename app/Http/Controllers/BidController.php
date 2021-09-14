@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bid;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class BidController extends Controller
@@ -20,7 +21,7 @@ class BidController extends Controller
             || $user === null
             || (int)$bid->user_id !== (int)$user->id
         ) {
-            return redirect('/');
+            return redirect(RouteServiceProvider::HOME);
         }
 
         return view('bid-thanks', ['bid' => $bid]);
@@ -38,13 +39,8 @@ class BidController extends Controller
             'amount' => ['required', 'numeric']
         ]);
 
-        $user = auth()->user();
-        if ($user === null) {
-            abort(401);
-        }
-
         $bid = Bid::create([
-            'user_id' => $user->id,
+            'user_id' => auth()->user()?->id,
             'auction_item_id' => $request->auction_item_id,
             'amount' => $request->amount
         ]);

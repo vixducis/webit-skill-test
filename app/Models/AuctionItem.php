@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -45,6 +46,16 @@ class AuctionItem extends Model
     public function getHighestBid()
     {
         return $this->bids()->orderby('amount','desc')->first();
+    }
+
+    /**
+     * Returns the highest bid on this item for the given user.
+     * @return Bid|null
+     */
+    public function getHighestBidForUser(User $user) {
+        return $this->bids()->where('user_id', '=', $user->id)
+            ->orderby('amount','desc')
+            ->first();
     }
 
     /**

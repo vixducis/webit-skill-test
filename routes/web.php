@@ -22,14 +22,21 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/item/new', [ItemController::class, 'create']);
-Route::post('/item', [ItemController::class, 'store']);
 Route::get('/item/{id}', [ItemController::class, 'show']);
-Route::get('/item/{id}/edit', [ItemController::class, 'edit']);
-Route::put('/item/{id}', [ItemController::class, 'update']);
-Route::delete('/item/{id}', [ItemController::class, 'destroy']);
+Route::get('/item/new', [ItemController::class, 'create'])
+    ->middleware(['auth.admin']);
+Route::post('/item', [ItemController::class, 'store'])
+    ->middleware(['auth.admin']);;
+Route::get('/item/{id}/edit', [ItemController::class, 'edit'])
+    ->middleware(['auth.admin']);
+Route::put('/item/{id}', [ItemController::class, 'update'])
+    ->middleware(['auth.admin']);
+Route::delete('/item/{id}', [ItemController::class, 'destroy'])
+    ->middleware(['auth.admin']);
 
-Route::post('/bid', [BidController::class, 'store']);
-Route::get('/bid/{id}/thanks', [BidController::class, 'thanks']);
+Route::post('/bid', [BidController::class, 'store'])
+    ->middleware(['auth.noadmin']);
+Route::get('/bid/{id}/thanks', [BidController::class, 'thanks'])
+    ->middleware(['auth.noadmin']);
 
 require __DIR__.'/auth.php';
