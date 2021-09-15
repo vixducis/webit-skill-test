@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Create Listing">
     <div class="w-full max-w-2xl container mx-auto mt-0 px-6 py-6">
         <h3 class="font-bold text-gray-900 mb-2 uppercase">Create listing</h3>
         <x-auth-validation-errors class="mb-4" :errors="$errors" />

@@ -1,4 +1,4 @@
-<x-app>
+<x-app :title="ucwords($item->name)">
     <div class="mx-auto flex items-center flex-wrap">
         <div class="image-wrapper w-full" style="background-image: url(<?= asset($item->getImagePath()) ?>)">
             <img class="w-full" src="{{asset('storage/images/items/'.$item->image)}}">

@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
+        <title>{{ $title }}</title>
     </head>
     <body class="work-sans text-gray-600">
         <nav id="header" class="w-full z-30 top-0 py-1 relative bg-white">
