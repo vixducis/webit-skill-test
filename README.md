@@ -7,7 +7,9 @@ This code was written as part of a skill test for a job interview at 'webit' by 
 touch database/database.sqlite
 php artisan migrate
 php artisan db:seed
+php artisan storage:link
 ```
+You should also create an .ENV file.
 
 ### Larastan
 
