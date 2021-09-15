@@ -22,9 +22,9 @@ Route::get('/', IndexController::class);
 Route::get('/dashboard', DashboardController::class)
     ->middleware(['auth'])->name('dashboard');
 
-Route::get('/item/{id}', [ItemController::class, 'show']);
 Route::get('/item/new', [ItemController::class, 'create'])
     ->middleware(['auth.admin']);
+Route::get('/item/{id}', [ItemController::class, 'show']);
 Route::post('/item', [ItemController::class, 'store'])
     ->middleware(['auth.admin']);;
 Route::get('/item/{id}/edit', [ItemController::class, 'edit'])
