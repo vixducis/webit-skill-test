@@ -7,16 +7,27 @@
         <div class="w-full container mx-auto mt-0 px-6 py-6">
             <div class="float-left w-full md:w-auto md:mb-1 flex justify-center mb-2">
                 @if ($item->getHighestBid() !== null)
-                    <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
-                        <p class="px-2 text-xs">current top bid</p>
-                        <p class="px-2 text-xl md:text-3xl bg-gray-800 text-white text-center">&euro;&nbsp;{{$item->getHighestBid()->amount}}</p>
-                    </div>
-                @endif
-                @if ($user !== null && $item->getHighestBidForUser($user) !== null)
-                    <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
-                        <p class="px-2 text-xs">your top bid</p>
-                        <p class="px-2 text-xl md:text-3xl bg-gray-800 text-white text-center">&euro;&nbsp;{{$item->getHighestBidForUser($user)->amount}}</p>
-                    </div>
+                    @if ($item->getHighestBid()->isMadeBy($user))
+                        <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
+                            <p class="px-2 text-xs">your bid</p>
+                            <p class="px-2 bg-gray-800 text-white text-center leading-2">
+                                <span class="text-xl md:text-3xl">&euro;&nbsp;{{$item->getHighestBid()->amount}}</span>
+                                <br />
+                                <span class="text-xs">You're winning!</span>
+                            </p>
+                        </div>
+                    @else
+                        <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
+                            <p class="px-2 text-xs">current top bid</p>
+                            <p class="px-2 text-xl md:text-3xl bg-gray-800 text-white text-center">&euro;&nbsp;{{$item->getHighestBid()->amount}}</p>
+                        </div>
+                        @if ($user !== null && $item->getHighestBidForUser($user) !== null)
+                            <div class="highest-bid float-left mr-4 -mt-10 z-20 relative bg-white">
+                                <p class="px-2 text-xs">your bid</p>
+                                <p class="px-2 text-xl md:text-3xl bg-gray-800 text-white text-center">&euro;&nbsp;{{$item->getHighestBidForUser($user)->amount}}</p>
+                            </div>
+                        @endif
+                    @endif
                 @endif
             </div>
             <p class="mb-4">

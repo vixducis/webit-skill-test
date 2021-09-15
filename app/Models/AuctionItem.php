@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
+use App\Traits\CacheTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +11,7 @@ class AuctionItem extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use CacheTrait;
 
     protected $fillable = [
         'name',
@@ -18,8 +19,7 @@ class AuctionItem extends Model
         'image'
     ];
 
-    public const STORAGE_PATH = 'images/items/';
-    public const IMAGE_PATH = 'storage/'.self::STORAGE_PATH;
+    public const IMAGE_PATH = 'storage/images/items/';
 
     /**
      * Returns the full image path so it can be used in an asset function
@@ -45,7 +45,9 @@ class AuctionItem extends Model
      */
     public function getHighestBid()
     {
-        return $this->bids()->orderby('amount','desc')->first();
+        return $this->getFromCache('highestBid', 
+            fn() => $this->bids()->orderby('amount','desc')->first()
+        );
     }
 
     /**
@@ -53,9 +55,10 @@ class AuctionItem extends Model
      * @return Bid|null
      */
     public function getHighestBidForUser(User $user) {
-        return $this->bids()->where('user_id', '=', $user->id)
-            ->orderby('amount','desc')
-            ->first();
+        return $this->getFromCache('highestBid.'.$user->id, 
+            fn() => $this->bids()->where('user_id', '=', $user->id)
+                ->orderby('amount','desc')->first()
+        );
     }
 
     /**

@@ -12,8 +12,17 @@ class Bid extends Model
     protected $fillable = ['user_id', 'auction_item_id', 'amount'];
 
     /**
+     * Returns whether this bod is made by the specified user.
+     * @param User|null $user
+     */
+    public function isMadeBy(?User $user): bool
+    {
+        return $user !== null && (int)$this->user_id === (int)$user->id;
+    }
+
+    /**
      * Returns which user made the bid.
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user() 
     {
@@ -22,7 +31,7 @@ class Bid extends Model
 
     /**
      * Returns which item has been bid on.
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function item()
     {

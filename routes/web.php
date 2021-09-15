@@ -36,6 +36,8 @@ Route::delete('/item/{id}', [ItemController::class, 'destroy'])
 
 Route::post('/bid', [BidController::class, 'store'])
     ->middleware(['auth.noadmin']);
+Route::delete('/bid/{id}', [BidController::class, 'destroy'])
+    ->middleware(['auth']);
 Route::get('/bid/{id}/thanks', [BidController::class, 'thanks'])
     ->middleware(['auth.noadmin']);
 

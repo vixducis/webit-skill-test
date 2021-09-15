@@ -31883,6 +31883,10 @@ video {
   font-family: 'Work Sans', sans-serif;
 }
 
+.leading-2 {
+  line-height: 0em;
+}
+
 .hover\:grow {
   transition: all 0.3s;
   transform: scale(1);
@@ -31964,11 +31968,11 @@ video {
     align-items: center;
     grid-template-columns: 1fr -webkit-min-content;
     grid-template-columns: 1fr min-content;
-    grid-template-rows: -webkit-min-content -webkit-min-content;
-    grid-template-rows: min-content min-content;
+    grid-template-rows: -webkit-min-content -webkit-min-content -webkit-min-content;
+    grid-template-rows: min-content min-content min-content;
     grid-template-areas: 
-            "name price" 
-            "date price";
+            "name price delete" 
+            "date price delete";
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   }
 
@@ -31991,6 +31995,10 @@ video {
   .bids-table tbody tr .date {
     grid-area: date;
     color: rgb(180, 180, 180);
+  }
+
+  .bids-table tbody tr .delete {
+    grid-area: delete;
   }
 }
 
